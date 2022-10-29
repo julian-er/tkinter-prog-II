@@ -1,8 +1,10 @@
 import sys
+from expenses_classes.consortium import Consortium
+
+from expenses_classes.expense import Expense
+from expenses_classes.tenant import Tenant
 sys.path.append(".")
-from expenses.expense import Expense
-from expenses.consortium import Consortium
-from expenses.tenant import Tenant
+
 
 
 class Expenses_Page:
@@ -37,7 +39,7 @@ class Expenses_Page:
         return f"consortium: {self.consortium}, expenses : {self.expenses}, tenant : {self.tenant}"  
 
 
-# create class
+# # create class
 # test = Expenses_Page()
 # # add expenses
 # test.add_expense('Tasa municipal', 'city_tax', 400)
