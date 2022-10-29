@@ -19,7 +19,7 @@ class tkinter_basics:
         Return tk basics class , to execute window do your_variable.execute_window()
     '''
 
-    def __init__(self, title='DS Urquiza',  iconUrl='./icons/j1.ico', cols=12, rows=12):
+    def __init__(self, title='DS Urquiza',  iconUrl='./assets/icon_inmo.ico', cols=12, rows=12):
 
         # define variables
         self.title = title
