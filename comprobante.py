@@ -7,9 +7,7 @@ sg.theme('DarkGrey14')
 
 def generar_comprobante():
     
-    my_absolute_path = r'C:\Users\herna\OneDrive\Escritorio\prog2\comprobantedoc.docx'
-    document_path = Path(__file__).parent / my_absolute_path
-    doc = DocxTemplate(document_path)
+    doc = DocxTemplate('comprobante.docx')
 
     today = datetime.datetime.today()
 
@@ -61,8 +59,7 @@ def generar_comprobante():
                 #Render the template, save new word document & inform user
                 values["TODAY"] = today.strftime("%d-%m-%Y")
                 doc.render(values)
-                route_output = r'C:\Users\herna\OneDrive\Escritorio'
-                output_path = Path(__file__).parent / route_output / f"{values['CLIENTE']}-expensas-{values['MES']} .docx"
+                output_path = Path(__file__).parent / f"{values['CLIENTE']}-expensas-{values['MES']} .docx"
                 doc.save(output_path)
                 sg.popup("Comprobante Registrado", f"El archivo se guardo en la ruta: {output_path}")
 

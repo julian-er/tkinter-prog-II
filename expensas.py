@@ -7,9 +7,7 @@ sg.theme('DarkGrey14')
 
 def generar_expensas():
     
-    my_absolute_path = r'C:\Users\herna\OneDrive\Escritorio\prog2\expensasdoc.docx'
-    document_path = Path(__file__).parent / my_absolute_path
-    doc = DocxTemplate(document_path)
+    doc = DocxTemplate('expensas.docx')
 
     today = datetime.datetime.today()
 
@@ -167,14 +165,10 @@ def generar_expensas():
 
                 #Render the template, save new word document & inform user
                 doc.render(values)
-                route_output = r'C:\Users\herna\OneDrive\Escritorio'
-                output_path = Path(__file__).parent / route_output / f"{values['CLIENTE']}-expensas-{values['MES']} .docx"
+                output_path = Path(__file__).parent / f"{values['CLIENTE']}-expensas-{values['MES']} .docx"
                 doc.save(output_path)
                 sg.popup("Archivo Registrado", f"El archivo se guardo en la ruta: {output_path}")
                 
-        
-    
-    
 
 
     window.close()
