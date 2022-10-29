@@ -14,7 +14,7 @@ class Expense:
     
     def __str__(self):
         """
-        Print info of tenant 
+        Print info of expense
         """
         return f"[expense: {self.name}, expense_variable: {self.expense_variable}, value: {self.value}]"  
     

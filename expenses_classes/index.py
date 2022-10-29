@@ -19,11 +19,11 @@ class Expenses_Page:
         """
         self.expenses.append(Expense(name, expense_variable, value))
 
-    def add_consortium(self, name, address, phone, mail):
+    def add_consortium(self, name, address, phone, mail, cuit, cbu, bank_branch, account_holder):
         """
         Create Consortium object data using Consortium Class
         """
-        self.consortium = Consortium(name, address, phone, mail)
+        self.consortium = Consortium(name, address, phone, mail, cuit, cbu, bank_branch, account_holder)
 
     def add_tenant(self, name, last_name, building, floor, current_month=0, last_balance=0):
         """
@@ -45,7 +45,8 @@ class Expenses_Page:
 # test.add_expense('Tasa municipal', 'city_tax', 400)
 # test.add_expense('Tasa inmobiliaria', 'real_state_tax', 400)
 # # add consortium data
-# test.add_consortium('Adm. Lares', 'Santa Fe 6700. Rosario, Santa Fe, AR', '3413657899', 'adm_lares@lares.com')
+# test.add_consortium('Adm. Lares', 'Santa Fe 6700. Rosario, Santa Fe, AR', '3413657899', 'adm_lares@lares.com', '20-09090-3', '3456723981237489023', 'Santader 4', 'tomas holder')
+# test.consortium.add_service('locksmith_phone', '7676767676')
 # # add tenant
 # test.add_tenant('Hernan', 'Gobu', 'Heras 5', 7, 35, 0)
 
