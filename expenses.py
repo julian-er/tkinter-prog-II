@@ -13,6 +13,7 @@ def generate_expenses():
     _window = tkinter_basics(title='Inmobiliaria Software - Expensas', iconUrl='./assets/icon_inmo.ico')
     _window.can_resize(False)
     _window.root.config(background='#594A7D')
+    _window.execute_window()
 
     expenses_object = index.Expenses_Page()
 

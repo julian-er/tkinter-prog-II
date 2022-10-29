@@ -80,5 +80,5 @@ class tkinter_basics:
             Execute mainloop and indispensable functions
         '''
         self.define_cols_quantity()
-        self.define_rows_quantity()
-        self.root.mainloop()
+        self.define_rows_quantity()    
+
