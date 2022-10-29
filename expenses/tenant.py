@@ -1,6 +1,3 @@
-from expense import Expense
-
-
 class Tenant:
     """
     Class that define a tenant properties
@@ -14,7 +11,7 @@ class Tenant:
     """
 
 
-    def __init__(self, name, last_name, building, floor, current_month=0, last_balance=0, expenses = []):
+    def __init__(self, name, last_name, building, floor, current_month=0, last_balance=0):
 
         self.name = name
         self.last_name = last_name
@@ -22,14 +19,13 @@ class Tenant:
         self.floor = floor
         self.current_month = current_month
         self.last_balance = last_balance
-        self.expenses = expenses
         self.total_balance = None
     
     def __str__(self):
         """
         Print info of tenant 
         """
-        return f" name: {self.name}, last_name: {self.last_name}, building: {self.building}, floor: {self.floor}, current_month: {self.current_month}, last_balance: {self.last_balance}, total_balance: {self.total_balance} , expenses : {self.expenses}"  
+        return f" name: {self.name}, last_name: {self.last_name}, building: {self.building}, floor: {self.floor}, current_month: {self.current_month}, last_balance: {self.last_balance}, total_balance: {self.total_balance}"  
 
     def __repr__(self):
         return str(self)
@@ -39,7 +35,7 @@ class Tenant:
         calculate total balance with current month 
         and last balance
         """
-        self.total_balance = self.current_month + self.last_balance
+        self.total_balance = round(float(self.current_month)) + round(float(self.last_balance))
 
     def delete_tenant_info(self):
         """

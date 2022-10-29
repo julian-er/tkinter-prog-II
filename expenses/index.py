@@ -1,6 +1,8 @@
-from expense import Expense
-from consortium import Consortium
-from tenant import Tenant
+import sys
+sys.path.append(".")
+from expenses.expense import Expense
+from expenses.consortium import Consortium
+from expenses.tenant import Tenant
 
 
 class Expenses_Page:
@@ -25,7 +27,7 @@ class Expenses_Page:
         """
         Create Tenant object data using Tenant Class
         """
-        self.tenant = Tenant(name, last_name, building, floor, current_month, last_balance, self.expenses)
+        self.tenant = Tenant(name, last_name, building, floor, current_month, last_balance)
         self.tenant.calc_total_balance()
 
     def __str__(self) -> str:
@@ -36,13 +38,13 @@ class Expenses_Page:
 
 
 # create class
-test = Expenses_Page()
-# add expenses
-test.add_expense('Tasa municipal', 'city_tax', 400)
-test.add_expense('Tasa inmobiliaria', 'real_state_tax', 400)
-# add consortium data
-test.add_consortium('Adm. Lares', 'Santa Fe 6700. Rosario, Santa Fe, AR', '3413657899', 'adm_lares@lares.com')
-# add tenant
-test.add_tenant('Hernan', 'Gobu', 'Heras 5', 7, 35, 0)
+# test = Expenses_Page()
+# # add expenses
+# test.add_expense('Tasa municipal', 'city_tax', 400)
+# test.add_expense('Tasa inmobiliaria', 'real_state_tax', 400)
+# # add consortium data
+# test.add_consortium('Adm. Lares', 'Santa Fe 6700. Rosario, Santa Fe, AR', '3413657899', 'adm_lares@lares.com')
+# # add tenant
+# test.add_tenant('Hernan', 'Gobu', 'Heras 5', 7, 35, 0)
 
-print(test)
+# print(test)

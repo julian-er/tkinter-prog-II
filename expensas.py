@@ -1,10 +1,14 @@
+import sys
+sys.path.append(".")
 import PySimpleGUI as sg
 from pathlib import Path
 from docxtpl import DocxTemplate
 import datetime
 
-sg.theme('DarkGrey14')
+from expenses.index import Expenses_Page
 
+sg.theme('DarkGrey14')
+expenses = Expenses_Page()
 def generar_expensas():
     
     doc = DocxTemplate('expensas.docx')
@@ -14,27 +18,29 @@ def generar_expensas():
     # Datos inquilino
     frame_datos_inquilino = [
 
-        [sg.Text("Nombre y Apellido:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="CLIENTE", do_not_clear=False)],
+        [sg.Text("Nombre:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="first_name", do_not_clear=False)],
         
-        [sg.Text("Edificio:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="EDIFICIO", do_not_clear=False)],
+        [sg.Text("Apellido:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="last_name", do_not_clear=False)],
         
-        [sg.Text("Piso:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="PISO", do_not_clear=False)],
-
+        [sg.Text("Edificio:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="building", do_not_clear=False)],
+        
+        [sg.Text("Piso:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="floor", do_not_clear=False)],
 
         # Montos del mes 
-        [sg.Text("Expensas Mes Corriente ($):", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="MES_CORRIENTE", do_not_clear=False)],
+        [sg.Text("Expensas Mes Corriente ($):", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="current_month", do_not_clear=False)],
         
-        [sg.Text("Saldo Anterior ($):", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="SALDO_ANTERIOR", do_not_clear=False)],
+        [sg.Text("Saldo Anterior ($):", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="last_balance", do_not_clear=False)],
 
-        # Recargo
-        [sg.Text("Recargo Segundo Vencimiento (%):", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="RECARGO_2", do_not_clear=False)],
+        # # Recargo
+        # [sg.Text("Recargo Segundo Vencimiento (%):", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="RECARGO_2", do_not_clear=False)],
         
+        # # Mes corriente
+        # [sg.Text("Mes:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="MES", do_not_clear=False)],
+        
+        # # Año corriente
+        # [sg.Text("Año:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="ANIO", do_not_clear=False)],
 
-        # Mes corriente
-        [sg.Text("Mes:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="MES", do_not_clear=False)],
-        
-        # Año corriente
-        [sg.Text("Año:", font='Calibri 12 bold', background_color="#3A424F"), sg.Input(key="ANIO", do_not_clear=False)],
+        [sg.Button("Borrar datos", font="Calibri 13 bold", key='-CLEAR-', button_color="#E04C5E"), sg.Button("Guardar", key='save_tenant', font='Calibri 13 bold')],
 
     ]
 
@@ -114,7 +120,7 @@ def generar_expensas():
 
         # Caja comentarios
         [sg.Text("Comentarios", font='Calibri 12 bold', background_color="#3A424F")],
-        [sg.Multiline (size=(90, 3))],
+        [sg.Multiline (key="S_COMENTARIOS", size=(90, 3))],
 
         # Botón
         [sg.Button("RESET", font="Calibri 13 bold", key='-CLEAR-', button_color="#E04C5E"), sg.Button("EXPENSAS", font='Calibri 13 bold')],
@@ -147,6 +153,14 @@ def generar_expensas():
         event, values = window.read()
         if event == sg.WIN_CLOSED:
             break
+        if event == "save_tenant":
+            answer=sg.PopupYesNo(f"Desea guardar los datos de este cliente? {values['first_name'] + values['last_name']}?")
+            if answer == 'No':
+                sg.WIN_CLOSED
+            else :
+                expenses.add_tenant(values['first_name'], values['last_name'], values['building'], values['floor'], values['current_month'], values['last_balance'])
+                print(expenses)
+
         if event == "EXPENSAS":
             answer=sg.PopupYesNo(f"Registrar expensas de {values['CLIENTE']}?")
             if answer == 'No':
@@ -160,6 +174,7 @@ def generar_expensas():
                 values["PLAZO_1_AL"] = plazo_1_al.strftime("%d-%m-%Y")
                 values["PLAZO_2_DEL"] = plazo_2_del.strftime("%d-%m-%Y")
                 values["PLAZO_2_AL"] = plazo_2_al.strftime("%d-%m-%Y")
+                print(values)
 
                 
 
