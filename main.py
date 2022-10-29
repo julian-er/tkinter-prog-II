@@ -6,8 +6,8 @@ def uno():
     
     
 def dos():
-    import comprobante as c
-    c.generar_comprobante()
+    import proof_payment as pp
+    pp.generate_proof_payment()
 
  
 def main ():
