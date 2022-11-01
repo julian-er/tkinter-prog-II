@@ -1,8 +1,10 @@
 from tkinter import*
 
+
 def uno():
     import expenses as e
     e.generate_expenses()
+   
     
     
 def dos():

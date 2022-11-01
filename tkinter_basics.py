@@ -19,7 +19,7 @@ class tkinter_basics:
         Return tk basics class , to execute window do your_variable.execute_window()
     '''
 
-    def __init__(self, title='DS Urquiza',  iconUrl='./assets/icon_inmo.ico', cols=12, rows=12):
+    def __init__(self, title='Inmobiliaria Software', iconUrl='./assets/icon_inmo.ico', cols=4, rows=30):
 
         # define variables
         self.title = title
@@ -30,7 +30,7 @@ class tkinter_basics:
 
         self.root.minsize(width=500, height=500)
         self.root.resizable(False, False)
-        self.root.title(self.title + ' second term practice')
+        self.root.title(self.title)
 
     def can_resize(self, resizable_boolean):
         '''
@@ -80,5 +80,5 @@ class tkinter_basics:
             Execute mainloop and indispensable functions
         '''
         self.define_cols_quantity()
-        self.define_rows_quantity()    
+        self.define_rows_quantity()   
 
