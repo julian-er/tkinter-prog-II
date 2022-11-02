@@ -17,23 +17,38 @@ def generate_expenses():
 
     expenses_object = index.Expenses_Page()
 
+    def save_tenant() :
+        expenses_object.add_tenant( name_entry.get(), last_name_entry.get(), building_box.get(), floor_entry.get(), int(float(current_month_entry.get())), int(float(last_balance_entry.get())) )
+        total_balance_var.set(int(float(current_month_entry.get())) + int(float(last_balance_entry.get())))
+        print(expenses_object)
 
-    def close_window () :
-        '''
-            close window
-        '''
-        _window.root.destroy()
+    def save_expenses() : 
+        expenses_array = [
+            {'name':'city_tax', 'value': int(float(city_tax_entry.get()))},
+            {'name':'real_state', 'value' : int(float(real_state_tax_entry.get()))},
+            {'name': 'water_tax', 'value' : int(float(water_tax_entry.get()))},
+            {'name':'water_r_tax', 'value' : int(float(water_r_tax_entry.get()))}, 
+            {'name': 'epe', 'value' : int(float(epe_entry.get()))},
+            {'name':'epe_res', 'value' : int(float(epe_res_entry.get()))},
+            {'name':'clean', 'value' : int(float(clean_entry.get()))},
+            {'name':'clean_res', 'value' : int(float(clean_res_entry.get()))},
+            {'name':'clean_art', 'value' : int(float(clean_art_entry.get()))},
+            {'name':'clean_bonus', 'value' : int(float(clean_bonus_entry.get()))},
+            {'name':'lift', 'value' : int(float(lift_entry.get()))},
+            {'name':'maintenance', 'value' : int(float(maintenance_entry.get()))},
+            {'name':'security', 'value' : int(float(security_entry.get()))},
+            {'name':'bookstore', 'value' : int(float(bookstore_item_entry.get()))},
+            {'name':'provident', 'value' : int(float(provident_entry.get()))},
+            {'name':'build_insurance', 'value' : int(float(build_insurance_entry.get()))},
+            {'name':'banking', 'value' : int(float(banking_entry.get()))},
+            {'name':'issues_insurance', 'value' : int(float(issues_insurance_entry.get()))},
+            {'name':'fee', 'value' : int(float(fee_entry.get()))}
+        ]
 
-    def minimize_window():
-        '''
-            minimize window
-        '''
-        _window.root.iconify()
-
-    def browse_button():
-        filename = filedialog.askdirectory()
-        print(filename)
-        return filename
+        for expense in expenses_array:
+            expenses_object.add_expense(expense['name'], expense['value'])
+        
+        print(expenses_object)
 
     # Create Notebook panel
     notebook = Notebook(_window.root)
@@ -71,7 +86,7 @@ def generate_expenses():
     last_name = Label(tenant, text="Apellido :", font='Cambria 11', fg='#FFFFFF', background='#15202B')
     last_name.grid(column=0, row=2, sticky=E, pady=5)
     last_name = StringVar()
-    last_name_entry = Entry(tenant, textvariable=last_name,  show='*')
+    last_name_entry = Entry(tenant, textvariable=last_name)
     last_name_entry.grid(column=1, row=2)
 
 
@@ -98,14 +113,15 @@ def generate_expenses():
 
     total_balance = Label(tenant, text="Total :", font='Cambria 11', fg='#FFFFFF', background='#15202B')
     total_balance.grid(column=0, row=6, sticky=E, pady=5)
-    total_balance = StringVar()
-    total_balance_entry = Entry(tenant, textvariable=total_balance)
+    total_balance_var = StringVar()
+    total_balance_entry = Label(tenant, textvariable=total_balance_var)
     total_balance_entry.grid(column=1, row=6)
+
 
     btn_delete = Button (tenant, text = 'Borrar', width = "10", command = "", font = 'Cambria 12', bg = '#E04C5E', fg = 'white')
     btn_delete.grid (column = 0, row= 8, pady=20)
 
-    btn_save = Button (tenant, text = 'Guardar', width = "10", command = "", font = 'Cambria 12', bg = '#2B5693', fg = 'white')
+    btn_save = Button (tenant, text = 'Guardar', width = "10", font = 'Cambria 12', bg = '#2B5693', fg = 'white', command=save_tenant)
     btn_save.grid (column = 1, row= 8, pady=20)
 
 
@@ -139,122 +155,115 @@ def generate_expenses():
     water_r_tax_entry.grid(column=1, row=3)
 
 
-    water_r_tax = Label(expenses, text="Agua (reserva) :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    water_r_tax.grid(column=0, row=4, sticky=E, pady=2)
-    water_r_tax = StringVar()
-    water_r_tax_entry = Entry(expenses, textvariable=water_r_tax)
-    water_r_tax_entry.grid(column=1, row=4)
-
-
     epe = Label(expenses, text="E.P.E :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
     epe.grid(column=0, row=5, sticky=E, pady=2)
     epe = StringVar()
     epe_entry = Entry(expenses, textvariable=epe)
-    epe_entry.grid(column=1, row=5)
+    epe_entry.grid(column=1, row=4)
 
 
     epe_res = Label(expenses, text="E.P.E (reserva) :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
     epe_res.grid(column=0, row=6, sticky=E, pady=2)
     epe_res = StringVar()
     epe_res_entry = Entry(expenses, textvariable=epe_res)
-    epe_res_entry.grid(column=1, row=6)
+    epe_res_entry.grid(column=1, row=5)
 
 
     clean = Label(expenses, text="Limpieza :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    clean.grid(column=0, row=7, sticky=E, pady=2)
+    clean.grid(column=0, row=6, sticky=E, pady=2)
     clean = StringVar()
     clean_entry = Entry(expenses, textvariable=clean)
-    clean_entry.grid(column=1, row=7)
+    clean_entry.grid(column=1, row=6)
 
 
     clean_res = Label(expenses, text="Limpieza (reserva) :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    clean_res.grid(column=0, row=8, sticky=E, pady=2)
+    clean_res.grid(column=0, row=7, sticky=E, pady=2)
     clean_res = StringVar()
     clean_res_entry = Entry(expenses, textvariable=clean_res)
-    clean_res_entry.grid(column=1, row=8)
+    clean_res_entry.grid(column=1, row=7)
 
 
     clean_art = Label(expenses, text="Limpieza (artículos) :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    clean_art.grid(column=0, row=9, sticky=E, pady=2)
+    clean_art.grid(column=0, row=8, sticky=E, pady=2)
     clean_art = StringVar()
     clean_art_entry = Entry(expenses, textvariable=clean_art)
-    clean_art_entry.grid(column=1, row=9)
+    clean_art_entry.grid(column=1, row=8)
 
 
     clean_bonus = Label(expenses, text="Limpieza (aguinaldo) :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    clean_bonus.grid(column=0, row=10, sticky=E, pady=2)
+    clean_bonus.grid(column=0, row=9, sticky=E, pady=2)
     clean_bonus = StringVar()
     clean_bonus_entry = Entry(expenses, textvariable=clean_bonus)
-    clean_bonus_entry.grid(column=1, row=10)
+    clean_bonus_entry.grid(column=1, row=9)
 
 
     lift = Label(expenses, text="Ascensor (mantenimiento) :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    lift.grid(column=0, row=11, sticky=E, pady=2)
+    lift.grid(column=0, row=10, sticky=E, pady=2)
     lift = StringVar()
     lift_entry = Entry(expenses, textvariable=lift)
-    lift_entry.grid(column=1, row=11)
+    lift_entry.grid(column=1, row=10)
 
 
     maintenance = Label(expenses, text="Mantenimiento (reserva) :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    maintenance.grid(column=0, row=12, sticky=E, pady=2)
+    maintenance.grid(column=0, row=11, sticky=E, pady=2)
     maintenance = StringVar()
     maintenance_entry = Entry(expenses, textvariable=maintenance)
-    maintenance_entry.grid(column=1, row=12)
+    maintenance_entry.grid(column=1, row=11)
 
 
     security = Label(expenses, text="Seguridad :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    security.grid(column=0, row=13, sticky=E, pady=2)
+    security.grid(column=0, row=12, sticky=E, pady=2)
     security = StringVar()
     security_entry = Entry(expenses, textvariable=security)
-    security_entry.grid(column=1, row=13)
+    security_entry.grid(column=1, row=12)
 
 
     bookstore_item = Label(expenses, text="Artículos de librería :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    bookstore_item.grid(column=0, row=14, sticky=E, pady=2)
+    bookstore_item.grid(column=0, row=13, sticky=E, pady=2)
     bookstore_item = StringVar()
     bookstore_item_entry = Entry(expenses, textvariable=bookstore_item)
-    bookstore_item_entry.grid(column=1, row=14)
+    bookstore_item_entry.grid(column=1, row=13)
 
     
     provident = Label(expenses, text="Fondo de previsión :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    provident.grid(column=0, row=15, sticky=E, pady=2)
+    provident.grid(column=0, row=14, sticky=E, pady=2)
     provident = StringVar()
     provident_entry = Entry(expenses, textvariable=provident)
-    provident_entry.grid(column=1, row=15)
+    provident_entry.grid(column=1, row=14)
 
 
     build_insurance = Label(expenses, text="Seguro R.C. Prop. Horizontal :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    build_insurance.grid(column=0, row=16, sticky=E, pady=2)
+    build_insurance.grid(column=0, row=15, sticky=E, pady=2)
     build_insurance = StringVar()
     build_insurance_entry = Entry(expenses, textvariable=build_insurance)
-    build_insurance_entry.grid(column=1, row=16)
+    build_insurance_entry.grid(column=1, row=15)
 
 
     banking = Label(expenses, text="Gastos bancarios mensuales :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    banking.grid(column=0, row=17, sticky=E, pady=2)
+    banking.grid(column=0, row=16, sticky=E, pady=2)
     banking = StringVar()
     banking_entry = Entry(expenses, textvariable=banking)
-    banking_entry.grid(column=1, row=17)
+    banking_entry.grid(column=1, row=16)
 
 
     issues_insurance = Label(expenses, text="Seguro accidentes personales :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    issues_insurance.grid(column=0, row=18, sticky=E, pady=2)
+    issues_insurance.grid(column=0, row=17, sticky=E, pady=2)
     issues_insurance = StringVar()
     issues_insurance_entry = Entry(expenses, textvariable=issues_insurance)
-    issues_insurance_entry.grid(column=1, row=18)
+    issues_insurance_entry.grid(column=1, row=17)
 
 
     fee = Label(expenses, text="Honorarios administración :", font='Cambria 10 bold', fg='#FFFFFF', background='#15202B')
-    fee.grid(column=0, row=19, sticky=E, pady=2)
+    fee.grid(column=0, row=18, sticky=E, pady=2)
     fee = StringVar()
     fee_entry = Entry(expenses, textvariable=fee)
-    fee_entry.grid(column=1, row=19)
+    fee_entry.grid(column=1, row=18)
 
 
     btn_delete = Button (expenses, text = 'Borrar', width = "10", command = "", font = 'Cambria 12', bg = '#E04C5E', fg = 'white')
     btn_delete.grid (column = 0, row= 20, pady=20)
 
-    btn_save = Button (expenses, text = 'Guardar', width = "10", command = "", font = 'Cambria 12', bg = '#2B5693', fg = 'white')
+    btn_save = Button (expenses, text = 'Guardar', width = "10", command = save_expenses, font = 'Cambria 12', bg = '#2B5693', fg = 'white')
     btn_save.grid (column = 1, row= 20, pady=20)
 
 

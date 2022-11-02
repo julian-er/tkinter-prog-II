@@ -1,7 +1,5 @@
 import sys
 from expenses_classes.consortium import Consortium
-
-from expenses_classes.expense import Expense
 from expenses_classes.tenant import Tenant
 sys.path.append(".")
 
@@ -11,13 +9,13 @@ class Expenses_Page:
     def __init__(self):
         self.tenant = None
         self.consortium = None
-        self.expenses = []
+        self.expenses = {}
 
-    def add_expense(self, name, expense_variable, value):
+    def add_expense(self, expense_variable, value):
         """
         Create Expenses array data using Expense Class
         """
-        self.expenses.append(Expense(name, expense_variable, value))
+        self.expenses[expense_variable]= value
 
     def add_consortium(self, name, address, phone, mail, cuit, cbu, bank_branch, account_holder):
         """

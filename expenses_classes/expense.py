@@ -1,3 +1,4 @@
+#  this file is not in use right now 
 class Expense:
     """
     Class that define a expense properties
@@ -6,17 +7,17 @@ class Expense:
     value (int) : number of the cost
     """
 
-    def __init__(self, name, expense_variable, value):
+    def __init__(self, expense_variable, value):
 
-        self.name = name
-        self.expense_variable = expense_variable
-        self.value = value
+        self.expense_values = {expense_variable : value}
+        # self.value = value
     
     def __str__(self):
         """
         Print info of expense
         """
-        return f"[expense: {self.name}, expense_variable: {self.expense_variable}, value: {self.value}]"  
+        # return f"[expense_variable: {self.expense_variable}, value: {self.value}]"  
+        return f"{self.expense_values}"  
     
     def __repr__(self):
         return str(self)
