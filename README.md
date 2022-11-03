@@ -94,7 +94,8 @@ los datos correspondientes
 
 #### Explicación técnica
 El sistema cuenta con la utilización de python y el agregado de dós módulos PySimpleGui 
-y Python docx template
+y Python docx template entonces es un pre requisito para poder hacer funcionar el mismo 
+hacer una instalación de estos módulos. A continuación dejamos los enlaces a sus sitios web
 
 > [PySimpleGUI](www.pysimplegui.org)    
 > [Python Docx template](https://docxtpl.readthedocs.io/)
