@@ -96,7 +96,7 @@ los datos correspondientes
 El sistema cuenta con la utilización de python y el agregado de dós módulos PySimpleGui 
 y Python docx template
 
-> [PySimpleGUI](www.pysimplegui.org) 
+> [PySimpleGUI](www.pysimplegui.org)    
 > [Python Docx template](https://docxtpl.readthedocs.io/)
 
 La primera es utilizada para mejorar y facilitar la escritura de la interfaz gráfica, es una
