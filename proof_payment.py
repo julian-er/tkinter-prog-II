@@ -55,7 +55,7 @@ def generate_proof_payment():
                 # Render the template, save new word document & inform user
                 values["TODAY"] = today.strftime("%d-%m-%Y")
                 doc.render(values)
-                output_path = Path(__file__).parent / f"{values['TENANT']}-expensas-{values['MONTH']} .docx"
+                output_path = Path(__file__).parent / f"{values['TENANT']}-payment-{values['MONTH']} .docx"
                 doc.save(output_path)
                 sg.popup("Comprobante Registrado", f"El archivo se guardo en la ruta: {output_path}")
 
