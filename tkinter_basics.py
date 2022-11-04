@@ -46,7 +46,7 @@ class tkinter_basics:
             theme (str)
         '''
         if theme == "dark":
-            self.root.config(background='#000000')
+            self.root.config(background='#24292E')
         else:
             self.root.config(background='#FFFFFF')
 

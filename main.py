@@ -24,9 +24,9 @@ def main ():
     
     block1 = Frame()
     block1.grid (row = 0, column = 0, columnspan = 2)
-    block1.config (width = '500', height = '80', bg = '#15202B')
+    block1.config (width = '500', height = '80', bg = '#1D2125')
     python_image = PhotoImage (file = './assets/logo_inmo.png')
-    label = Label (image = python_image, bg = '#15202B')
+    label = Label (image = python_image, bg = '#1D2125')
     label.grid (row = 0, column = 0, columnspan = 2)
     
 

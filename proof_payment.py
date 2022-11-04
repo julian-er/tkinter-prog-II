@@ -40,7 +40,7 @@ def generate_proof_payment():
             [sg.Button("RESET", size=15, font="Calibri 12 bold", key='-CLEAR-', button_color="#E04C5E"), sg.Button("COMPROBANTE", size=15, font='Calibri 12 bold')],
             ]
 
-    window = sg.Window("Inmobiliaria Software", layout, margins=(20,20), element_justification="center")
+    window = sg.Window("Inmobiliaria Software", layout, margins=(20,20), icon='assets/icon_inmo.ico', element_justification="center")
     
     
     while True:
